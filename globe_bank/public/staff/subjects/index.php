@@ -38,12 +38,12 @@ $subjects = [
                 <!-- Jul 10, 2022 12:01:53 The loop will fill the table according to the assoc arrays inside $subjects; I assume we're going to find a way to quickly add additional assoc arrays to $subjects, and eventually move $subjects to a database instead of being in the code. -->
                 <?php foreach ($subjects as $subject) { ?>
                     <tr>
-                        <td><?php echo $subject["id"]; ?></td>
-                        <td><?php echo $subject["position"]; ?></td>
+                        <td><?php echo h($subject["id"]); ?></td>
+                        <td><?php echo h($subject["position"]); ?></td>
                         <!-- Jul 10, 2022 12:03:45 Reminder: this is a shorthand if statement. -->
                         <td><?php echo $subject["visible"] == 1 ? 'true' : 'false'; ?></td>
-                        <td><?php echo $subject["menu_name"]; ?></td>
-                        <td><a href="<?php echo url_for("/staff/subjects/show.php?id=" . $subject["id"]); ?>" class="action">View</a></td>
+                        <td><?php echo h($subject["menu_name"]); ?></td>
+                        <td><a href="<?php echo url_for("/staff/subjects/show.php?id=" . h(u($subject["id"]))); ?>" class="action">View</a></td>
                         <td><a href="<?php echo url_for("") ?>" class="action">Edit</a></td>
                         <td><a href="<?php echo url_for("") ?>" class="action">Delete</a></td>
                     </tr>

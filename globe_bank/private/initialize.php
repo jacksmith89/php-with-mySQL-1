@@ -2,9 +2,13 @@
 // Assign file paths to PHP constants
 // __FILE__ returns the current path to this file
 // dirname() returns the path to the parent directory
+// Jul 12, 2022 09:54:17 Adding notes because I forget: PRIVATE_PATH returns the path from the root all the way this file, initialize, which means it will "/globe_bank/private".
 define("PRIVATE_PATH", dirname(__FILE__));
+// PROJECT_PATH finds the parent directory of PRIVATE_PATH, which in this case is "/globe_bank"
 define("PROJECT_PATH", dirname(PRIVATE_PATH));
+// PUBLIC_PATH adds "/public" to PROJECT_PATH, so it returns "/globe_bank/public"
 define("PUBLIC_PATH", PROJECT_PATH . "/public");
+// SHARED_PATH adds "/shared" to PRIVATE_PATH, so it returns "/globe_bank/private/shared"
 define("SHARED_PATH", PRIVATE_PATH . "/shared");
 
 // Assign the root URL to a PHP constant

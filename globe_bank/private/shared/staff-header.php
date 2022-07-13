@@ -10,7 +10,8 @@ if (!isset($page_title)) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo url_for("/stylesheets/staff.css"); ?>">
-    <title>GBI — <?php echo $page_title; ?></title>
+    <!-- We're also escaping the variable $page_title here with h(). -->
+    <title>GBI — <?php echo h($page_title); ?></title>
 </head>
 
 <body>
