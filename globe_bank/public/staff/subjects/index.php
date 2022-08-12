@@ -1,7 +1,12 @@
 <?php require_once("../../../private/initialize.php"); ?>
 
-<!-- Jul 10, 2022 11:54:55 $subjects will be an array filled with assoc arrays -->
+
 <?php
+// Aug 12, 2022 13:02:32 we're going to now call the find_all_subjects() function from query_functions.php.
+
+$subject_set = find_all_subjects();
+
+// Jul 10, 2022 11:54:55 $subjects will be an array filled with assoc arrays
 $subjects = [
     ['id' => '1', 'position' => '1', 'visible' => '1', 'menu_name' => 'About Globe Bank'],
     ['id' => '2', 'position' => '2', 'visible' => '1', 'menu_name' => 'Nose Picking'],
@@ -49,6 +54,10 @@ $subjects = [
                     </tr>
                 <?php } ?>
             </table>
+            <!-- Aug 12, 2022 12:57:27 Here we're releasing the data that we called with $sql above. -->
+            <?php
+            mysqli_free_result($subject_set);
+            ?>
         </div>
     </div>
 </div>

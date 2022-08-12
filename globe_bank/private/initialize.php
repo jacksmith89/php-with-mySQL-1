@@ -32,4 +32,10 @@ $doc_root = substr($_SERVER["SCRIPT_NAME"], 0, $public_end);
 // Finally, we define "WWW_ROOT" as the variable $doc_root.
 define("WWW_ROOT", $doc_root);
 
-require_once "functions.php";
+require_once("functions.php");
+// Aug 12, 2022 12:40:30 Any time any page loads initialize.php, it will load database.php, which includes loading db_credentials.php, and run the db_connect() function, connecting to the database; Every page that uses initialize.php (so, every page) will automatically connect to the database. Logging out of the database is handled on staff-footer.php.
+
+require_once("database.php");
+require_once("query_functions.php");
+
+$db = db_connect();
