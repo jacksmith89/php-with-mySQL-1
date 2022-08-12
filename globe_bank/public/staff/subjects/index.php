@@ -19,7 +19,7 @@ $subjects = [
 
         <!-- Jul 10, 2022 11:56:01 A new container with .actions, containing a link with .action called "Create New Subject", and a table with headings data to be filled by the following php loop. -->
         <div class="actions">
-            <a href="" class="action">Create New Subject</a>
+            <a href="<?php echo url_for('/staff/subjects/new.php') ?>" class="action">Create New Subject</a>
             <table class="list">
                 <tr>
                     <th>ID</th>
@@ -44,8 +44,8 @@ $subjects = [
                         <td><?php echo $subject["visible"] == 1 ? 'true' : 'false'; ?></td>
                         <td><?php echo h($subject["menu_name"]); ?></td>
                         <td><a href="<?php echo url_for("/staff/subjects/show.php?id=" . h(u($subject["id"]))); ?>" class="action">View</a></td>
-                        <td><a href="<?php echo url_for("") ?>" class="action">Edit</a></td>
-                        <td><a href="<?php echo url_for("") ?>" class="action">Delete</a></td>
+                        <td><a href="<?php echo url_for("/staff/subjects/edit.php?id=" . h(u($subject["id"]))) ?>" class="action">Edit</a></td>
+                        <td><a href="<?php echo url_for(""); ?>" class="action">Delete</a></td>
                     </tr>
                 <?php } ?>
             </table>

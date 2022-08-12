@@ -34,7 +34,7 @@
         <h1>Pages</h1>
         <!-- .actions is indeed in the stylesheet -->
         <div class="actions">
-            <a href="" class="action">Create New Page</a>
+            <a href="<?php echo url_for('/staff/pages/new.php') ?>" class="action">Create New Page</a>
             <!-- .list is also in the stylesheet -->
             <table class="list">
                 <tr>
@@ -51,7 +51,7 @@
                         <td><?php echo $page["visible"] == 1 ? "true" : "false"; ?></td>
                         <td><?php echo h($page["menu_name"]); ?></td>
                         <td><a href="<?php echo url_for("/staff/pages/show.php?id=") . h(u($page["id"])); ?>" class="action">View</a></td>
-                        <td><a href="<?php echo url_for(""); ?>">Edit</a></td>
+                        <td><a href="<?php echo url_for('/staff/pages/edit.php?id=') . h(u($page["id"])); ?>">Edit</a></td>
                         <td><a href="<?php echo url_for(""); ?>">Delete</a></td>
                     </tr>
                 <?php } ?>
