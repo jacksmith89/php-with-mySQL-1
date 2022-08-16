@@ -22,7 +22,13 @@ function raw_u($string = "")
 // Jul 12, 2022 09:15:55 htmlspecialchars() will convert special characters passed into queries and forms so that the browser interprets them as part of a string, and not as code (I think). This is especially important to prevent cross-site scripting, a form of hacking where script tags are passed into a query or url and the browser just runs whatever (probably malicious) script is passed in.
 function h($string = "")
 {
-    return htmlspecialchars($string);
+    return htmlspecialchars($string ?? '');
+}
+
+function sqlEscape($string = "")
+{
+    global $db;
+    return mysqli_real_escape_string($db, $string ?? '');
 }
 
 function error_404()

@@ -5,14 +5,14 @@
 // Aug 12, 2022 13:02:32 we're going to now call the find_all_subjects() function from query_functions.php.
 
 $subject_set = find_all_subjects();
-
 // Jul 10, 2022 11:54:55 $subjects will be an array filled with assoc arrays
-$subjects = [
-    ['id' => '1', 'position' => '1', 'visible' => '1', 'menu_name' => 'About Globe Bank'],
-    ['id' => '2', 'position' => '2', 'visible' => '1', 'menu_name' => 'Nose Picking'],
-    ['id' => '3', 'position' => '3', 'visible' => '1', 'menu_name' => 'Removing Sticks From Butts'],
-    ['id' => '4', 'position' => '4', 'visible' => '1', 'menu_name' => 'Customer Service'],
-] ?>
+// $subjects = [
+//     ['id' => '1', 'position' => '1', 'visible' => '1', 'menu_name' => 'About Globe Bank'],
+//     ['id' => '2', 'position' => '2', 'visible' => '1', 'menu_name' => 'Nose Picking'],
+//     ['id' => '3', 'position' => '3', 'visible' => '1', 'menu_name' => 'Removing Sticks From Butts'],
+//     ['id' => '4', 'position' => '4', 'visible' => '1', 'menu_name' => 'Customer Service'],
+// ]
+?>
 
 <?php $page_title = "Subjects"; ?>
 <?php include(SHARED_PATH . "/staff-header.php"); ?>
@@ -41,7 +41,8 @@ $subjects = [
                 <!-- Jul 10, 2022 11:57:22 A forEach that will loop through the $subjects array. I think we put a closing tag after the opening code bracket so we could put php tags inside each td element, but it still looks very weird to me. -->
                 <!-- Jul 10, 2022 17:47:54 Update: Kyle says this is indeed best practice. -->
                 <!-- Jul 10, 2022 12:01:53 The loop will fill the table according to the assoc arrays inside $subjects; I assume we're going to find a way to quickly add additional assoc arrays to $subjects, and eventually move $subjects to a database instead of being in the code. -->
-                <?php foreach ($subjects as $subject) { ?>
+                <!-- Aug 12, 2022 13:18:04 Now we're drawing from the database to create the table! The while loop will run through the associative array derived from $subject_set (which we got from the query at the top of the page) to populate the data. -->
+                <?php while ($subject = mysqli_fetch_assoc($subject_set)) { ?>
                     <tr>
                         <td><?php echo h($subject["id"]); ?></td>
                         <td><?php echo h($subject["position"]); ?></td>
@@ -49,8 +50,8 @@ $subjects = [
                         <td><?php echo $subject["visible"] == 1 ? 'true' : 'false'; ?></td>
                         <td><?php echo h($subject["menu_name"]); ?></td>
                         <td><a href="<?php echo url_for("/staff/subjects/show.php?id=" . h(u($subject["id"]))); ?>" class="action">View</a></td>
-                        <td><a href="<?php echo url_for("/staff/subjects/edit.php?id=" . h(u($subject["id"]))) ?>" class="action">Edit</a></td>
-                        <td><a href="<?php echo url_for(""); ?>" class="action">Delete</a></td>
+                        <td><a href="<?php echo url_for("/staff/subjects/edit.php?id=" . h(u($subject["id"]))); ?>" class="action">Edit</a></td>
+                        <td><a href="<?php echo url_for("/staff/subjects/delete.php?id=" . h(u($subject["id"]))); ?>" class="action">Delete</a></td>
                     </tr>
                 <?php } ?>
             </table>
